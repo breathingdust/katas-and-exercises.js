@@ -4,7 +4,7 @@
   "description": "A collection of exercises and katas",
   "main": "index.js",
   "scripts": {
-    "test-unit": "NODE_ENV=test mocha '/**/*.spec.js'"
+    "test": "node_modules/.bin/mocha"
   },
   "author": "",
   "license": "ISC",
