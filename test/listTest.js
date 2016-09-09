@@ -67,4 +67,21 @@ describe('a list', function(){
 
         expect(actual).to.deep.eql(expected);
     })    
+
+    it('should return the nth element in the list', function(){
+        var input = {
+            value: 10,
+            rest : {
+                value: 20,
+                rest: {
+                    value: 30,
+                    rest: null
+                }
+            }
+        };
+
+        var actual = list.nth(input,2);
+
+        expect(actual).to.eql(30);
+    })        
 })
