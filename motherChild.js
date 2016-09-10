@@ -16,6 +16,24 @@ function ageDifference(ancestryArray){
     return average(differences);
 }
 
+function ageByCentury(ancestryArray){
+    var centuryAverages = {};
+
+    ancestryArray.forEach(function(person){
+        var century = String(Math.ceil(person.died / 100));
+        if (!centuryAverages[century]){
+            centuryAverages[century] = [person.died - person.born];
+        } else {
+            centuryAverages[century].push(person.died - person.born);
+        }
+    })
+
+    for(cent in centuryAverages){
+        centuryAverages[cent] = average(centuryAverages[cent]);
+    }
+    return centuryAverages;
+}
+
 function average(array) {
   function plus(a, b) { return a + b; }
   return array.reduce(plus) / array.length;
@@ -24,5 +42,6 @@ function average(array) {
 
 
 module.exports = {
-    ageDifference
+    ageDifference,
+    ageByCentury
 }

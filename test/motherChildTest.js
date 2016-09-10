@@ -10,4 +10,8 @@ describe('mother and child age difference', function(){
 
         expect(actual).to.be.closeTo(31.2,0.1);
     })
+
+    it('should group by century and compute average age of death',function(){
+        var actual = motherChild.ageByCentury(ancestry);
+    })
 })
