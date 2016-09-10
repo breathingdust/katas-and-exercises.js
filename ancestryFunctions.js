@@ -17,21 +17,32 @@ function motherChildAgeDifference(ancestryArray){
 }
 
 function ageOfDeathByCentury(ancestryArray){
-    var centuryAverages = {};
-
-    ancestryArray.forEach(function(person){
-        var century = String(Math.ceil(person.died / 100));
-        if (!centuryAverages[century]){
-            centuryAverages[century] = [person.died - person.born];
-        } else {
-            centuryAverages[century].push(person.died - person.born);
-        }
-    })
-
-    for(cent in centuryAverages){
-        centuryAverages[cent] = average(centuryAverages[cent]);
+    var groupedPeople = groupBy(ancestryArray, computeCentury);
+    for(century in groupedPeople){
+        groupedPeople[century] = average(groupedPeople[century].map(computeAge));
     }
-    return centuryAverages;
+    return groupedPeople;
+}
+
+function computeAge(person){
+    return person.died - person.born;
+}
+
+function computeCentury(person){
+    return String(Math.ceil(person.died / 100));
+}
+
+function groupBy(array, group){
+    var grouped = {};
+
+    array.forEach(function(groupMember){
+        var computedGroup = group(groupMember);
+        if (!grouped[computedGroup]){
+            grouped[computedGroup] = [];
+        }
+        grouped[computedGroup].push(groupMember);
+    })
+    return grouped;
 }
 
 function average(array) {
