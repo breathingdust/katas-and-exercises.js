@@ -1,4 +1,4 @@
-function ageDifference(ancestryArray){
+function motherChildAgeDifference(ancestryArray){
 
     var byName = {};
     ancestryArray.forEach(function(person) {
@@ -16,7 +16,7 @@ function ageDifference(ancestryArray){
     return average(differences);
 }
 
-function ageByCentury(ancestryArray){
+function ageOfDeathByCentury(ancestryArray){
     var centuryAverages = {};
 
     ancestryArray.forEach(function(person){
@@ -42,6 +42,6 @@ function average(array) {
 
 
 module.exports = {
-    ageDifference,
-    ageByCentury
+    motherChildAgeDifference,
+    ageOfDeathByCentury
 }
